@@ -15,7 +15,7 @@ RUN rm -fr /app && mkdir /app && \
  unzip 1.2.14 -d /tmp  && \
  cp -a /tmp/twilio*/. ~/app
 
- rm -rf /tmp/twilio*
+RUN rm -rf /tmp/twilio*
 
 # Add script to create 'openvbx' DB
 ADD run.sh run.sh
