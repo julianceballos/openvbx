@@ -1,5 +1,5 @@
 FROM centurylink/apache-php:latest
-MAINTAINER CentruyLink
+MAINTAINER Julian Ceballos
 
 # Install packages
 RUN apt-get update && \
@@ -12,8 +12,7 @@ RUN rm -fr /app && mkdir /app && \
  wget https://api.github.com/repos/twilio/OpenVBX/zipball/1.2.14 && \
  unzip 1.2.14 -d /tmp  && \
  cp -a /tmp/twilio*/. ~/app
-
- rm -rf /tmp/twilio*
+# rm -rf /tmp/twilio*
 
 # Add script to create 'openvbx' DB
 ADD run.sh run.sh
