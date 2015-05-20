@@ -5,7 +5,7 @@ MAINTAINER Julian Ceballos
 RUN apt-get update && \
  DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
  DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor pwgen unzip wget && \
- apt-get -y install mysql-client
+ apt-get -y install mysql-client php5-curl php5-memcache
 
 # Download OpenVBX into /app
 RUN rm -fr /app && mkdir /app && \
@@ -13,6 +13,10 @@ RUN rm -fr /app && mkdir /app && \
  tar -zxvf 1.2.14 -C /tmp  && \
  cp -a /tmp/twilio*/. /app && \
  rm -rf /tmp/twilio*
+
+# OpenVBX folder permissions
+RUN chmod -R 777 /app/OpenVBX/config
+RUN chmod -R 777 /app/audio-uploads
 
 # Add script to create 'openvbx' DB
 ADD run.sh run.sh
