@@ -9,10 +9,10 @@ RUN apt-get update && \
 
 # Download OpenVBX into /app
 RUN rm -fr /app && mkdir /app && \
- wget https://api.github.com/repos/twilio/OpenVBX/zipball/1.2.14 && \
- unzip 1.2.14 -d /tmp  && \
- cp -a /tmp/twilio*/. ~/app
-# rm -rf /tmp/twilio*
+ wget https://api.github.com/repos/twilio/OpenVBX/tarball/1.2.14 && \
+ tar -zxvf 1.2.14 -C /tmp  && \
+ cp -a /tmp/twilio*/. /app && \
+ rm -rf /tmp/twilio*
 
 # Add script to create 'openvbx' DB
 ADD run.sh run.sh
