@@ -13,16 +13,15 @@ RUN apt-get update && \
 RUN rm -fr /app && mkdir /app && \
  wget https://api.github.com/repos/twilio/OpenVBX/zipball/1.2.14 && \
  unzip 1.2.14 -d /tmp  && \
- cp -a /tmp/twilio*/. ~/app
+ cp -a /tmp/twilio*/. ~/app && \
+ chmod -R 775 ~/app/OpenVBX/config && \
+ chmod -R 775 ~/app/audio-uploads
 
 RUN rm -rf /tmp/twilio*
 
 # Add script to create 'openvbx' DB
 ADD run.sh run.sh
 RUN chmod 755 /*.sh
-
-RUN chmod -R 775 /app/OpenVBX/config
-RUN chmod -R 775 /app/audio-uploads
 
 EXPOSE 80
 CMD ["/run.sh"]
