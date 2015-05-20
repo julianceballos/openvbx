@@ -6,7 +6,7 @@ then
 fi
 
 sleep 5
-DB_EXISTS=$(mysql -uroot -p$DB_PASSWORD -h$DB_1_PORT_3306_TCP_ADDR -P$DB_1_PORT_3306_TCP_PORT -e "SHOW DATABASES LIKE 'openvbx';" | grep "openvbx" > /dev/null; echo "$?")
+DB_EXISTS=$(mysql -uconekta -p$DB_PASSWORD -h$DB_1_PORT_3306_TCP_ADDR -P$DB_1_PORT_3306_TCP_PORT -e "SHOW DATABASES LIKE 'openvbx';" | grep "openvbx" > /dev/null; echo "$?")
 
 if [[ DB_EXISTS -eq 1 ]]; 
 then
