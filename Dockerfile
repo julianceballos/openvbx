@@ -5,7 +5,9 @@ MAINTAINER CentruyLink
 RUN apt-get update && \
  DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
  DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor pwgen unzip wget && \
- apt-get -y install mysql-client
+ apt-get -y install mysql-client && \
+ apt-get -y install php5-memcache && \
+ apt-get -y install php5-curl
 
 # Download OpenVBX into /app
 RUN rm -fr /app && mkdir /app && \
@@ -18,7 +20,9 @@ RUN rm -fr /app && mkdir /app && \
 # Add script to create 'openvbx' DB
 ADD run.sh run.sh
 RUN chmod 755 /*.sh
-#RUN chmod -R 777 /var/www/html/config/ /var/www/html/files/ /var/www/html/packages/
+
+RUN chmod -R 775 /app/OpenVBX/config
+RUN chmod -R 775 /app/audio-uploads
 
 EXPOSE 80
 CMD ["/run.sh"]
